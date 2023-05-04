@@ -171,6 +171,17 @@ DROP USER administrador2;
 
 #### 9 - Crie um grupo chamado adms e adicione o usuário administrador.
 
+```sql
+-- Acessar o banco de dados como o usuário postgres
+psql -U postgres mydatabase
+
+-- Criar um novo grupo chamado "adms"
+CREATE GROUP adms;
+
+-- Adicionar o usuário "administrador" ao grupo "adms"
+ALTER GROUP adms ADD USER administrador;
+```
+
 #### 10 - Crie um usuário com seu nome e conceda os privilégios de criar, deletar e atualizar uma tabela.
 
 #### 11 - Revogue o privilégio de deletar ao usuário criado na questão anterior.

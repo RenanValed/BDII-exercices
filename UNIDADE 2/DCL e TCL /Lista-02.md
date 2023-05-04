@@ -184,4 +184,15 @@ ALTER GROUP adms ADD USER administrador;
 
 #### 10 - Crie um usuário com seu nome e conceda os privilégios de criar, deletar e atualizar uma tabela.
 
+```sql
+-- Acessar o banco de dados como o usuário postgres
+psql -U postgres mydatabase
+
+-- Criar um novo usuário com seu nome
+CREATE USER seu_nome;
+
+-- Conceder os privilégios necessários para o novo usuário
+GRANT CREATE, DROP, UPDATE ON ALL TABLES IN SCHEMA public TO seu_nome;
+```
+
 #### 11 - Revogue o privilégio de deletar ao usuário criado na questão anterior.

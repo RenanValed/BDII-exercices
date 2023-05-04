@@ -38,7 +38,16 @@ Create table Funcionario (
 
 #### 4 - Exemplifique a execução do comando COMMIT em SQL.
 
+```sql
+-- Início da transação
+BEGIN;
 
+-- Adicionando alguns registros na tabela Funcionario
+INSERT INTO Funcionario (nome, idade) VALUES ('João', 28), ('Maria', 32);
+
+-- Confirmando as alterações com o comando COMMIT
+COMMIT;
+```
 
 #### 5 - Exemplifique a execução dos comandos SAVEPOINT, ROLLBACK TO SAVEPOINT  e RELEASE SAVEPOINT.
 

@@ -51,6 +51,72 @@ COMMIT;
 
 #### 5 - Exemplifique a execução dos comandos SAVEPOINT, ROLLBACK TO SAVEPOINT  e RELEASE SAVEPOINT.
 
+#### SAVEPOINT e ROLLBACK TO SAVEPOINT
+
+```sql 
+-- Início da transação
+BEGIN;
+
+-- Seleciona o registro com código igual a 1
+SELECT * FROM Funcionario WHERE codigo = 1 FOR UPDATE;
+
+-- Verifica se o nome é válido
+IF nome <> 'João' THEN
+  -- Cria um SAVEPOINT
+  SAVEPOINT my_savepoint;
+  
+  -- Altera o nome do funcionário
+  UPDATE Funcionario SET nome = 'João' WHERE codigo = 1;
+  
+  -- Verifica se a idade é válida
+  IF idade >= 18 THEN
+    -- Confirma as alterações com o comando COMMIT
+    COMMIT;
+  ELSE
+    -- Desfaz as alterações feitas a partir do SAVEPOINT
+    ROLLBACK TO SAVEPOINT my_savepoint;
+  END IF;
+ELSE
+  -- Desfaz a transação inteira
+  ROLLBACK;
+END IF;
+
+-- Fim da transação
+COMMIT;
+```
+
+#### RELEASE SAVEPOINT
+```sql
+-- Início da transação
+BEGIN;
+
+-- Seleciona o registro com código igual a 1
+SELECT * FROM Funcionario WHERE codigo = 1 FOR UPDATE;
+
+-- Verifica se o nome é válido
+IF nome <> 'João' THEN
+  -- Cria um SAVEPOINT
+  SAVEPOINT my_savepoint;
+  
+  -- Altera o nome do funcionário
+  UPDATE Funcionario SET nome = 'João' WHERE codigo = 1;
+  
+  -- Verifica se a idade é válida
+  IF idade >= 18 THEN
+    -- Confirma as alterações com o comando COMMIT
+    COMMIT;
+  ELSE
+    -- Desfaz as alterações feitas a partir do SAVEPOINT
+    ROLLBACK TO SAVEPOINT my_savepoint;
+  END IF;
+ELSE
+  -- Desfaz a transação inteira
+  ROLLBACK;
+END IF;
+
+-- Libera o SAVEPOINT e finaliza a transação
+RELEASE SAVEPOINT my_savepoint;
+```
 
 
 #### 6 - Explique o funcionamento dos comandos LOCK TABLES e UNLOCK TABLES.

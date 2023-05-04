@@ -197,7 +197,7 @@ GRANT CREATE, DROP, UPDATE ON ALL TABLES IN SCHEMA public TO renanadm;
 
 #### 11 - Revogue o privilégio de deletar ao usuário criado na questão anterior.
 
-```~~sql
+```sql
 -- Revogar o privilégio de deletar ao usuário "renanadm"
 REVOKE DELETE ON ALL TABLES IN SCHEMA public FROM renanadm;
 

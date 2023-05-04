@@ -22,9 +22,19 @@ O acrônimo ACID faz referência aos quatro princípios básicos que qualquer SG
 
 #### 3 - Crie um banco de dados de apenas uma tabela com três atributos para servir de bd para as questões 4 e 5.
 
-```Funcionario (codigo[Primary Key], nome, idade)```
+`Funcionario (codigo[Primary Key], nome, idade)`
 
-[Ir para resposta](https://github.com/RenanValed/BDII-exercices/blob/main/UNIDADE%202/DCL%20e%20TCL%20/questao3.sql)
+```sql
+
+DROP TABLE IF EXISTS accounts;
+
+Create table Funcionario (
+	codigo SERIAL primary key not null,
+	nome char[111] not null,   
+    idade int not null
+);
+
+```
 
 #### 4 - Exemplifique a execução do comando COMMIT em SQL.
 

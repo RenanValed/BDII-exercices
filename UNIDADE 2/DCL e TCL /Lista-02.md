@@ -137,6 +137,18 @@ O comando `UNLOCK TABLES` é utilizado para liberar as tabelas bloqueadas anteri
 
 #### 7 - Crie um usuário com nome administrador e conceda a ele todos os privilégios em um banco de dados.
 
+```sql 
+-- Acessar o banco de dados como o usuário postgres
+psql -U postgres mydatabase
+
+-- Criar um novo usuário chamado "administrador" com uma senha
+CREATE USER administrador WITH PASSWORD 'senha123';
+
+-- Conceder todos os privilégios do banco de dados ao novo usuário
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO administrador;
+
+```
+
 #### 8 - Crie um usuário com nome usu e conceda a ele todos os privilégios e depois altere seu nome para administrador2 e adicione uma senha para ele. Em seguida remova o usuário.
 
 #### 9 - Crie um grupo chamado adms e adicione o usuário administrador.

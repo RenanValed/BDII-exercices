@@ -151,6 +151,24 @@ GRANT ALL PRIVILEGES ON DATABASE mydatabase TO administrador;
 
 #### 8 - Crie um usuário com nome usu e conceda a ele todos os privilégios e depois altere seu nome para administrador2 e adicione uma senha para ele. Em seguida remova o usuário.
 
+```sql
+-- Acessar o banco de dados como o usuário postgres
+psql -U postgres mydatabase
+
+-- Criar um novo usuário chamado "usu" com todos os privilégios
+CREATE USER usu;
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO usu;
+
+-- Renomear o usuário para "administrador2"
+ALTER USER usu RENAME TO administrador2;
+
+-- Adicionar uma senha ao usuário
+ALTER USER administrador2 PASSWORD 'minhasenha';
+
+-- Remover o usuário
+DROP USER administrador2;
+```
+
 #### 9 - Crie um grupo chamado adms e adicione o usuário administrador.
 
 #### 10 - Crie um usuário com seu nome e conceda os privilégios de criar, deletar e atualizar uma tabela.

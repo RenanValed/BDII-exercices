@@ -121,6 +121,16 @@ RELEASE SAVEPOINT my_savepoint;
 
 #### 6 - Explique o funcionamento dos comandos LOCK TABLES e UNLOCK TABLES.
 
+#### Comando LOCK TABLES
+
+O comando `LOCK TABLES` é usado para bloquear uma ou várias tabelas em um banco de dados, impedindo que outras transações modifiquem seus dados. Ele pode ser usado com diferentes tipos de bloqueio:
+
+- `READ`: bloqueia a tabela para leitura, impedindo apenas a atualização ou exclusão dos dados;
+- `WRITE`: bloqueia a tabela para escrita, impedindo qualquer operação de leitura, atualização ou exclusão.
+
+#### Comando UNLOCK TABLES
+
+O comando `UNLOCK TABLES` é utilizado para liberar as tabelas bloqueadas anteriormente pelo comando `LOCK TABLES`. É importante lembrar que o `LOCK TABLES` e o `UNLOCK TABLES` devem ser utilizados dentro de uma transação para garantir a consistência dos dados e evitar conflitos de acesso. O uso excessivo desses comandos pode levar a problemas de desempenho e concorrência em bancos de dados com muitas transações simultâneas.
 
 
 ## Permissões (DCL):

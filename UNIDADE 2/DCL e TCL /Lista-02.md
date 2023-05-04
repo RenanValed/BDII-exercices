@@ -188,11 +188,17 @@ ALTER GROUP adms ADD USER administrador;
 -- Acessar o banco de dados como o usuário postgres
 psql -U postgres mydatabase
 
--- Criar um novo usuário com seu nome
-CREATE USER seu_nome;
+-- Criar um novo usuário com nome renanadm
+CREATE USER renanadm;
 
 -- Conceder os privilégios necessários para o novo usuário
-GRANT CREATE, DROP, UPDATE ON ALL TABLES IN SCHEMA public TO seu_nome;
+GRANT CREATE, DROP, UPDATE ON ALL TABLES IN SCHEMA public TO renanadm;
 ```
 
 #### 11 - Revogue o privilégio de deletar ao usuário criado na questão anterior.
+
+```sql
+-- Revogar o privilégio de deletar ao usuário "renanadm"
+REVOKE DELETE ON ALL TABLES IN SCHEMA public FROM renanadm;
+
+```

@@ -24,6 +24,8 @@ O acrônimo ACID faz referência aos quatro princípios básicos que qualquer SG
 
 `Funcionario (codigo[Primary Key], nome, idade)`
 
+[Ir para resposta](https://github.com/RenanValed/BDII-exercices/blob/main/UNIDADE%202/DCL%20e%20TCL%20/questao3.sql)
+
 #### 4 - Exemplifique a execução do comando COMMIT em SQL.
 
 

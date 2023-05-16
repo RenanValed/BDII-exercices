@@ -177,6 +177,40 @@ SELECT calcular_quantidade_atividades_membro(1, 2) AS quantidade_atividades;
 h. Faça uma função para calcular a porcentagem de atividades que um membro de equipe fez no
 projeto.
 
+~~~sql
+CREATE OR REPLACE FUNCTION calcular_porcentagem_atividades_membro(projeto_id integer, membro_id integer)
+  RETURNS numeric AS
+$$
+DECLARE
+  quantidade_total integer;
+  quantidade_atividades integer;
+  porcentagem numeric;
+BEGIN
+  SELECT count(*) INTO quantidade_total
+  FROM atividade_membro am
+  JOIN atividade a ON am.codAtividade = a.codigo
+  WHERE a.codProjeto = projeto_id;
+
+  SELECT count(*) INTO quantidade_atividades
+  FROM atividade_membro am
+  JOIN atividade a ON am.codAtividade = a.codigo
+  WHERE am.codMembro = membro_id AND a.codProjeto = projeto_id;
+
+  IF quantidade_total > 0 THEN
+    porcentagem := (quantidade_atividades::numeric / quantidade_total) * 100;
+  ELSE
+    porcentagem := 0;
+  END IF;
+
+  RETURN porcentagem;
+END;
+$$
+LANGUAGE plpgsql;
+~~~
+
+~~~sql
+SELECT calcular_quantidade_atividades_membro(1, 2) AS quantidade_atividades;
+~~~
 
 i. Para cada questão que você resolver, faça um commit indicando o ID da issue. Na mensagem
 de commit sempre acrescente o ID da issue criada na questão 1.

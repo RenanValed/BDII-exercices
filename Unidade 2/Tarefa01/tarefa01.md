@@ -1,13 +1,13 @@
 # Faça scripts .sql para as seguintes questões:
 - a. Faça uma função para calcular a idade do funcionário.
 ~~~sql
-CREATE OR REPLACE FUNCTION calcular_idade(data_nasc date)
+CREATE OR REPLACE FUNCTION calcular_idade( date)
   RETURNS integer AS
 $$
 DECLARE
   idade integer;
 BEGIN
-  idade := extract(year from age(current_date, data_nasc));
+  idade := extract(year from age(current_date, dataNasc));
   RETURN idade;
 END;
 $$

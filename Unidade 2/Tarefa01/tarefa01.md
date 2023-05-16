@@ -74,6 +74,28 @@ CALL exibir_funcionarios_acima_media_idade();
 d. Faça uma função para calcular quantos dias de atraso tem uma atividade. A função retornará
 negativo se estiver atrasada e positiva se estiver em dia.
 
+~~~sql
+CREATE OR REPLACE FUNCTION calcular_atraso(atividade_id integer)
+  RETURNS integer AS
+$$
+DECLARE
+  atraso_dias integer;
+BEGIN
+  SELECT extract(days FROM (current_date - dataConclusao)) INTO atraso_dias
+  FROM atividade
+  WHERE codigo = atividade_id;
+
+  RETURN atraso_dias;
+END;
+$$
+LANGUAGE plpgsql;
+~~~
+
+~~~sql
+SELECT descricao, calcular_atraso(codigo) AS atraso
+FROM atividade;
+~~~
+
 e. Faça uma função para calcular quantos dias de atraso tem um projeto. A função retornará
 negativo se estiver atrasada e positiva se estiver em dia.
 

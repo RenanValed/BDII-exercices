@@ -124,10 +124,59 @@ FROM projeto;
 f. Faça um procedimento para exibir a equipe de um projeto, exibindo o nome do funcionário, a
 sigla do departamento.
 
+~~~sql
+CREATE OR REPLACE PROCEDURE exibir_equipe_do_projeto(projeto_id integer)
+AS $$
+BEGIN
+  FOR equipe_row IN
+    SELECT f.nome AS nome_funcionario, d.sigla AS sigla_departamento
+    FROM membro m
+    JOIN funcionario f ON m.codFuncionario = f.codigo
+    JOIN departamento d ON f.depto = d.codigo
+    WHERE m.codEquipe = (
+      SELECT equipe FROM projeto WHERE codigo = projeto_id
+    )
+  LOOP
+    RAISE NOTICE 'Funcionário: %, Departamento: %', equipe_row.nome_funcionario, equipe_row.sigla_departamento;
+  END LOOP;
+END;
+$$
+LANGUAGE plpgsql;
+~~~
+
+~~~sql
+CALL exibir_equipe_do_projeto(1);
+~~~
+
 g. Faça uma função para calcular quantas atividades um membro da equipe fez no projeto.
+
+~~~sql
+CREATE OR REPLACE FUNCTION calcular_quantidade_atividades_membro(projeto_id integer, membro_id integer)
+  RETURNS integer AS
+$$
+DECLARE
+  quantidade_atividades integer;
+BEGIN
+  SELECT count(*) INTO quantidade_atividades
+  FROM atividade_membro am
+  WHERE am.codMembro = membro_id AND am.codAtividade IN (
+    SELECT codigo FROM atividade WHERE codProjeto = projeto_id
+  );
+
+  RETURN quantidade_atividades;
+END;
+$$
+LANGUAGE plpgsql;
+~~~
+
+~~~sql
+SELECT calcular_quantidade_atividades_membro(1, 2) AS quantidade_atividades;
+~~~
+
 
 h. Faça uma função para calcular a porcentagem de atividades que um membro de equipe fez no
 projeto.
+
 
 i. Para cada questão que você resolver, faça um commit indicando o ID da issue. Na mensagem
 de commit sempre acrescente o ID da issue criada na questão 1.

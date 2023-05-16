@@ -1,5 +1,5 @@
 # Faça scripts .sql para as seguintes questões:
-a. Faça uma função para calcular a idade do funcionário.
+- a. Faça uma função para calcular a idade do funcionário.
 ~~~sql
 CREATE OR REPLACE FUNCTION calcular_idade(data_nasc date)
   RETURNS integer AS
@@ -18,7 +18,7 @@ SELECT nome, calcular_idade(dataNasc) AS idade FROM funcionario;
 ~~~
 
 
-b. Faça uma função para calcular a média de idade por departamento.
+- b. Faça uma função para calcular a média de idade por departamento.
 
 ~~~sql
 CREATE OR REPLACE FUNCTION calcular_media_idade_por_departamento()
@@ -38,7 +38,7 @@ LANGUAGE plpgsql;
 SELECT * FROM calcular_media_idade_por_departamento();
 ~~~
 
-c. Faça um procedimento para exibir os funcionários com idade acima da média do seu
+- c. Faça um procedimento para exibir os funcionários com idade acima da média do seu
 departamento.
 
 ~~~sql
@@ -71,7 +71,7 @@ LANGUAGE plpgsql;
 CALL exibir_funcionarios_acima_media_idade();
 ~~~
 
-d. Faça uma função para calcular quantos dias de atraso tem uma atividade. A função retornará
+- d. Faça uma função para calcular quantos dias de atraso tem uma atividade. A função retornará
 negativo se estiver atrasada e positiva se estiver em dia.
 
 ~~~sql
@@ -96,7 +96,7 @@ SELECT descricao, calcular_atraso(codigo) AS atraso
 FROM atividade;
 ~~~
 
-e. Faça uma função para calcular quantos dias de atraso tem um projeto. A função retornará
+- e. Faça uma função para calcular quantos dias de atraso tem um projeto. A função retornará
 negativo se estiver atrasada e positiva se estiver em dia.
 
 ~~~sql
@@ -121,7 +121,7 @@ SELECT descricao, calcular_atraso_projeto(codigo) AS atraso
 FROM projeto;
 ~~~
 
-f. Faça um procedimento para exibir a equipe de um projeto, exibindo o nome do funcionário, a
+- f. Faça um procedimento para exibir a equipe de um projeto, exibindo o nome do funcionário, a
 sigla do departamento.
 
 ~~~sql
@@ -148,7 +148,7 @@ LANGUAGE plpgsql;
 CALL exibir_equipe_do_projeto(1);
 ~~~
 
-g. Faça uma função para calcular quantas atividades um membro da equipe fez no projeto.
+- g. Faça uma função para calcular quantas atividades um membro da equipe fez no projeto.
 
 ~~~sql
 CREATE OR REPLACE FUNCTION calcular_quantidade_atividades_membro(projeto_id integer, membro_id integer)
@@ -174,7 +174,7 @@ SELECT calcular_quantidade_atividades_membro(1, 2) AS quantidade_atividades;
 ~~~
 
 
-h. Faça uma função para calcular a porcentagem de atividades que um membro de equipe fez no
+- h. Faça uma função para calcular a porcentagem de atividades que um membro de equipe fez no
 projeto.
 
 ~~~sql

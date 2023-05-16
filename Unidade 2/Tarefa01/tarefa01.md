@@ -99,6 +99,28 @@ FROM atividade;
 e. Faça uma função para calcular quantos dias de atraso tem um projeto. A função retornará
 negativo se estiver atrasada e positiva se estiver em dia.
 
+~~~sql
+CREATE OR REPLACE FUNCTION calcular_atraso_projeto(projeto_id integer)
+  RETURNS integer AS
+$$
+DECLARE
+  atraso_dias integer;
+BEGIN
+  SELECT extract(days FROM (current_date - dataConclusao)) INTO atraso_dias
+  FROM projeto
+  WHERE codigo = projeto_id;
+
+  RETURN atraso_dias;
+END;
+$$
+LANGUAGE plpgsql;
+~~~
+
+~~~sql
+SELECT descricao, calcular_atraso_projeto(codigo) AS atraso
+FROM projeto;
+~~~
+
 f. Faça um procedimento para exibir a equipe de um projeto, exibindo o nome do funcionário, a
 sigla do departamento.
 

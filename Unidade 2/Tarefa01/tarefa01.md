@@ -67,6 +67,10 @@ $$
 LANGUAGE plpgsql;
 ~~~
 
+~~~sql
+CALL exibir_funcionarios_acima_media_idade();
+~~~
+
 d. Faça uma função para calcular quantos dias de atraso tem uma atividade. A função retornará
 negativo se estiver atrasada e positiva se estiver em dia.
 
